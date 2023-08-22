@@ -1,10 +1,25 @@
 {
   "dependencies": {
+    "@apollo/server": "^4.9.1",
     "@prisma/client": "5.1.1",
+    "@types/bcryptjs": "^2.4.2",
+    "@types/graphql-upload": "^16.0.0",
     "@types/node": "^20.5.1",
+    "@types/ws": "^8.5.5",
+    "apollo-server-express": "^3.12.0",
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.3.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.0",
+    "graphql-subscriptions": "^2.0.0",
+    "graphql-upload": "^12.0.0",
+    "graphql-ws": "^5.14.0",
     "i": "^0.3.7",
+    "moment": "^2.29.4",
     "npm": "^9.8.1",
-    "typescript": "^5.1.6"
+    "typescript": "^5.1.6",
+    "ws": "^8.13.0"
   },
   "devDependencies": {
     "prisma": "^5.1.1"
@@ -13,11 +28,12 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc",
+    "start:admin": "tsc & nodemon dist/admin/index.js",
+    "dev:admin": "nodemon src/admin/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "description": "",
-  "type": "module"
+  "description": ""
 }

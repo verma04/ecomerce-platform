@@ -55,23 +55,101 @@ model merchant {
   id        String    @id @default(cuid())
   email     String    @unique
   name      String
+  slug      String    @unique
   password  String
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
   role      user_type @default(admin)
   isActive  Boolean   @default(true)
 
-  Image Image[]
+
+  Image        Image[]
+  category     merchantCategory[]
+  kyc          merchantKyc?
+  loginSession loginSession[]
+}
+
+model loginSession {
+  id String @id @default(cuid())
+
+  user   merchant @relation(fields: userId, references: id)
+  userId String   @unique
+  deviceInfo deviceInfo?
+}
+
+enum  deviceType {
+  web
+  android
+  ios
+}
+
+model deviceInfo {
+  id String @id @default(cuid())
+  user   loginSession @relation(fields: loginSessionId, references: id)
+  loginSessionId String   @unique
+  device deviceType
+}
+
+model merchantKyc {
+  id      String               @id @default(cuid())
+  gstIn   String
+  user    merchant             @relation(fields: userId, references: id)
+  userId  String               @unique
+  address merchantAddress?
+  account merchantBankAccount?
+}
+
+model merchantAddress {
+  addressLin1   String
+  addressLine2  String
+  landMark      String
+  state         String
+  city          String
+  pinCode       String
+  kyc           merchantKyc @relation(fields: merchantKycId, references: id)
+  merchantKycId String      @unique
+}
+
+model merchantBankAccount {
+  accountNumber String
+  ifscCode      String
+  bankName      String
+  kyc           merchantKyc @relation(fields: merchantKycId, references: id)
+  merchantKycId String      @unique
 }
 
 model Image {
-  id          String   @id @default(cuid())
-  title       String
-  description String
-  caption     String
-  alt         String
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  user        merchant @relation(fields: userId, references: id)
+  id               String            @id @default(cuid())
+  title            String
+  description      String
+  caption          String
+  alt              String
+  createdAt        DateTime          @default(now())
+  updatedAt        DateTime          @updatedAt
+  user             merchant          @relation(fields: userId, references: id)
+  userId           String
+  merchantCategory merchantCategory?
+  sliderImage      sliderImage?
+}
+
+model sliderImage {
+  categoryImage      Image            @relation(fields: imageId, references: id)
+  imageId            String           @unique
+  merchantCategory   merchantCategory @relation(fields: merchantCategoryId, references: id)
+  merchantCategoryId String           @unique
+}
+
+model merchantCategory {
+  id            String @id @default(cuid())
+  sort          Int    @default(autoincrement())
+  title         String
+  description   String
+  categoryImage Image  @relation(fields: imageId, references: id)
+  imageId       String @unique
+
+  user        merchant      @relation(fields: userId, references: id)
   userId      String
+  sliderImage sliderImage[]
+  createdAt   DateTime      @default(now())
+  updatedAt   DateTime      @updatedAt
 }

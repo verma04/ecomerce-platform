@@ -17,17 +17,16 @@ enum user_type {
 
 // @admin
 model user {
-  id        String    @id @default(cuid())
-  email     String    @unique
+  id        String     @id @default(cuid())
+  email     String     @unique
   name      String
   password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  role      user_type @default(admin)
-  isActive  Boolean   @default(true)
-
-  category category[]
-  location location[]
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  role      user_type  @default(admin)
+  isActive  Boolean    @default(true)
+  category  category[]
+  location  location[]
 }
 
 model category {
@@ -51,6 +50,12 @@ model location {
 
 //@Merchant
 
+model qrcode {
+  qrcode String
+  user   merchant @relation(fields: userId, references: id)
+  userId String   @unique
+}
+
 model merchant {
   id        String    @id @default(cuid())
   email     String    @unique
@@ -62,41 +67,48 @@ model merchant {
   role      user_type @default(admin)
   isActive  Boolean   @default(true)
 
-
-  Image        Image[]
-  category     merchantCategory[]
-  kyc          merchantKyc?
-  loginSession loginSession[]
+  Image             Image[]
+  category          merchantCategory[]
+  kyc               merchantKyc?
+  loginSession      loginSession[]
+  merchantWareHouse merchantWareHouse[]
+  qrcode            qrcode?
 }
 
 model loginSession {
-  id String @id @default(cuid())
-
-  user   merchant @relation(fields: userId, references: id)
-  userId String   @unique
+  id         String      @id @default(cuid())
+  user       merchant    @relation(fields: userId, references: id)
+  userId     String      @unique
   deviceInfo deviceInfo?
+  latitude   String
+  longitude  String
+  deviceId   String
+  city       String
+  ipAddress  String
+  token      String
+  logout     Boolean     @default(false)
 }
 
-enum  deviceType {
+enum deviceType {
   web
   android
   ios
 }
 
 model deviceInfo {
-  id String @id @default(cuid())
-  user   loginSession @relation(fields: loginSessionId, references: id)
-  loginSessionId String   @unique
-  device deviceType
+  id             String       @id @default(cuid())
+  user           loginSession @relation(fields: loginSessionId, references: id)
+  loginSessionId String       @unique
+  device         deviceType
 }
 
 model merchantKyc {
-  id      String               @id @default(cuid())
+  id      String                @id @default(cuid())
   gstIn   String
-  user    merchant             @relation(fields: userId, references: id)
-  userId  String               @unique
+  user    merchant              @relation(fields: userId, references: id)
+  userId  String                @unique
   address merchantAddress?
-  account merchantBankAccount?
+  account merchantBankAccount[]
 }
 
 model merchantAddress {
@@ -140,16 +152,32 @@ model sliderImage {
 }
 
 model merchantCategory {
-  id            String @id @default(cuid())
-  sort          Int    @default(autoincrement())
+  id            String        @id @default(cuid())
+  sort          Int           @default(autoincrement())
   title         String
   description   String
-  categoryImage Image  @relation(fields: imageId, references: id)
-  imageId       String @unique
+  categoryImage Image         @relation(fields: imageId, references: id)
+  imageId       String        @unique
+  user          merchant      @relation(fields: userId, references: id)
+  userId        String
+  sliderImage   sliderImage[]
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  status        Boolean       @default(true)
+}
 
-  user        merchant      @relation(fields: userId, references: id)
-  userId      String
-  sliderImage sliderImage[]
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
+model merchantWareHouse {
+  id           String    @id @default(cuid())
+  gstIn        String
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  merchant     merchant? @relation(fields: [merchantId], references: [id])
+  merchantId   String
+  addressLin1  String
+  addressLine2 String
+  landMark     String
+  state        String
+  city         String
+  pinCode      String
+  status       Boolean   @default(true)
 }

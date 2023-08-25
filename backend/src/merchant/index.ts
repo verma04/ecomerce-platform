@@ -12,7 +12,7 @@ import cors from "cors";
 import bodyParser from "body-parser";
 import resolvers from "./graphql/resolvers";
 import typeDefs from "./graphql/types";
-
+import { ApolloServerPluginLandingPageGraphQLPlayground } from "@apollo/server-plugin-landing-page-graphql-playground";
 const {
   GraphQLUpload,
   graphqlUploadExpress, // A Koa implementation is also exported.
@@ -91,7 +91,7 @@ require("dotenv").config();
   );
 
   // http server start
-  httpServer.listen(process.env.ADMIN_PORT, () => {
+  httpServer.listen(process.env.MERCHANT_PORT, () => {
     console.log(
       `Server running on http://localhost:${process.env.MERCHANT_PORT} `
     );

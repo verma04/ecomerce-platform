@@ -30,12 +30,25 @@ model user {
 }
 
 model category {
-  id        String   @id @default(cuid())
-  title     String
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  user      user     @relation(fields: userId, references: id)
-  userId    String
+  id            String         @id @default(cuid())
+  title         String         @unique
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  user          user           @relation(fields: userId, references: id)
+  userId        String
+  subCategory   subCategory[]
+  sellerProfile sellerProfile?
+}
+
+model subCategory {
+  id         String    @id @default(cuid())
+  title      String    @unique
+  createdAt  DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+  category   category? @relation(fields: [categoryId], references: [id])
+  categoryId String?
+
+  isComplted Boolean @default(false)
 }
 
 model location {
@@ -48,36 +61,59 @@ model location {
   status    Boolean
 }
 
-//@Merchant
+//@seller
 
 model qrcode {
   qrcode String
-  user   merchant @relation(fields: userId, references: id)
-  userId String   @unique
+  user   seller @relation(fields: userId, references: id)
+  userId String @unique
 }
 
-model merchant {
-  id        String    @id @default(cuid())
-  email     String    @unique
-  name      String
-  slug      String    @unique
-  password  String
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
-  role      user_type @default(admin)
-  isActive  Boolean   @default(true)
+model sellerLogo {
+  id          String        @id @default(cuid())
+  logo        Image?        @relation(fields: [imageId], references: [id])
+  imageId     String
+  data64Image String
+  seller      sellerProfile @relation(fields: [sellerId], references: [id])
+  sellerId    String        @unique
+}
 
-  Image             Image[]
-  category          merchantCategory[]
-  kyc               merchantKyc?
-  loginSession      loginSession[]
-  merchantWareHouse merchantWareHouse[]
-  qrcode            qrcode?
+model sellerProfile {
+  id         String      @id @default(cuid())
+  name       String?
+  slug       String?     @unique
+  category   category    @relation(fields: [categoryId], references: [id])
+  categoryId String      @unique
+  seller     seller      @relation(fields: [sellerId], references: [id])
+  sellerId   String      @unique
+  sellerLogo sellerLogo?
+}
+
+model seller {
+  id             String         @id @default(cuid())
+  email          String         @unique
+  password       String?
+  name           String
+  createdAt      DateTime       @default(now())
+  updatedAt      DateTime       @updatedAt
+  role           user_type      @default(admin)
+  isActive       Boolean        @default(true)
+  isMailVerified Boolean        @default(false)
+  emailToken     String         @unique
+  sellerProfile  sellerProfile?
+
+  sellerCategory  sellerCategory[]
+  kyc             sellerKyc?
+  loginSession    loginSession[]
+  sellerWareHouse sellerWareHouse[]
+  qrcode          qrcode?
+  product         product[]
+  coupon          coupon[]
 }
 
 model loginSession {
   id         String      @id @default(cuid())
-  user       merchant    @relation(fields: userId, references: id)
+  user       seller      @relation(fields: userId, references: id)
   userId     String      @unique
   deviceInfo deviceInfo?
   latitude   String
@@ -102,82 +138,191 @@ model deviceInfo {
   device         deviceType
 }
 
-model merchantKyc {
-  id      String                @id @default(cuid())
+model sellerKyc {
+  id      String              @id @default(cuid())
   gstIn   String
-  user    merchant              @relation(fields: userId, references: id)
-  userId  String                @unique
-  address merchantAddress?
-  account merchantBankAccount[]
+  user    seller              @relation(fields: userId, references: id)
+  userId  String              @unique
+  address sellerAddress?
+  account sellerBankAccount[]
 }
 
-model merchantAddress {
-  addressLin1   String
-  addressLine2  String
-  landMark      String
-  state         String
-  city          String
-  pinCode       String
-  kyc           merchantKyc @relation(fields: merchantKycId, references: id)
-  merchantKycId String      @unique
-}
-
-model merchantBankAccount {
-  accountNumber String
-  ifscCode      String
-  bankName      String
-  kyc           merchantKyc @relation(fields: merchantKycId, references: id)
-  merchantKycId String      @unique
-}
-
-model Image {
-  id               String            @id @default(cuid())
-  title            String
-  description      String
-  caption          String
-  alt              String
-  createdAt        DateTime          @default(now())
-  updatedAt        DateTime          @updatedAt
-  user             merchant          @relation(fields: userId, references: id)
-  userId           String
-  merchantCategory merchantCategory?
-  sliderImage      sliderImage?
-}
-
-model sliderImage {
-  categoryImage      Image            @relation(fields: imageId, references: id)
-  imageId            String           @unique
-  merchantCategory   merchantCategory @relation(fields: merchantCategoryId, references: id)
-  merchantCategoryId String           @unique
-}
-
-model merchantCategory {
-  id            String        @id @default(cuid())
-  sort          Int           @default(autoincrement())
-  title         String
-  description   String
-  categoryImage Image         @relation(fields: imageId, references: id)
-  imageId       String        @unique
-  user          merchant      @relation(fields: userId, references: id)
-  userId        String
-  sliderImage   sliderImage[]
-  createdAt     DateTime      @default(now())
-  updatedAt     DateTime      @updatedAt
-  status        Boolean       @default(true)
-}
-
-model merchantWareHouse {
-  id           String    @id @default(cuid())
-  gstIn        String
-  createdAt    DateTime  @default(now())
-  updatedAt    DateTime  @updatedAt
-  merchant     merchant? @relation(fields: [merchantId], references: [id])
-  merchantId   String
+model sellerAddress {
   addressLin1  String
   addressLine2 String
   landMark     String
   state        String
   city         String
   pinCode      String
-  status       Boolean   @default(true)
+  kyc          sellerKyc @relation(fields: sellerKycId, references: id)
+  sellerKycId  String    @unique
+}
+
+model sellerBankAccount {
+  accountNumber String
+  ifscCode      String
+  bankName      String
+  kyc           sellerKyc @relation(fields: sellerKycId, references: id)
+  sellerKycId   String    @unique
+}
+
+model Image {
+  id          String   @id @default(cuid())
+  title       String
+  description String
+  caption     String
+  alt         String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  sellerCategory sellerCategory?
+  mutipleImage   mutipleImage?
+  sellerLogo     sellerLogo[]
+}
+
+model mutipleImage {
+  categoryImage    Image           @relation(fields: imageId, references: id)
+  imageId          String          @unique
+  sellerCategory   sellerCategory  @relation(fields: sellerCategoryId, references: id)
+  sellerCategoryId String          @unique
+  productVariant   productVariant? @relation(fields: [productVariantId], references: [id])
+  productVariantId String?
+}
+
+model sellerCategory {
+  id            String         @id @default(cuid())
+  sort          Int            @default(autoincrement())
+  title         String
+  description   String
+  categoryImage Image          @relation(fields: imageId, references: id)
+  imageId       String         @unique
+  user          seller         @relation(fields: userId, references: id)
+  userId        String
+  mutipleImage  mutipleImage[]
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  status        Boolean        @default(true)
+  coupon        coupon?        @relation(fields: [couponId], references: [id])
+  couponId      String?
+}
+
+model sellerWareHouse {
+  id           String   @id @default(cuid())
+  gstIn        String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  seller       seller?  @relation(fields: [sellerId], references: [id])
+  sellerId     String
+  addressLin1  String
+  addressLine2 String
+  landMark     String
+  state        String
+  city         String
+  pinCode      String
+  status       Boolean  @default(true)
+}
+
+model productColor {
+  id        String   @id @default(cuid())
+  image     String?
+  title     String
+  product   product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model productSize {
+  id        String   @id @default(cuid())
+  image     String?
+  title     String
+  product   product? @relation(fields: [productId], references: [id])
+  productId String?
+}
+
+model list {
+  id          String @id @default(cuid())
+  title       String
+  description String
+
+  ListOrder        ListOrder?
+  productDetials   productDetials? @relation(fields: [productDetialsId], references: [id])
+  productDetialsId String?
+}
+
+model ListOrder {
+  id               String          @id @default(cuid())
+  title            String
+  list             list?           @relation(fields: listId, references: id)
+  listId           String?         @unique
+  productDetials   productDetials? @relation(fields: [productDetialsId], references: [id])
+  productDetialsId String?
+}
+
+model productDetials {
+  id              String      @id @default(cuid())
+  highlights      list[]
+  Specifications  ListOrder[]
+  product         product?
+  legalDisclaimer String
+}
+
+model product {
+  id               String           @id @default(cuid())
+  productName      String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  seller           seller?          @relation(fields: [sellerId], references: [id])
+  sellerId         String
+  brandName        String
+  status           Boolean          @default(true)
+  productVariant   productVariant[]
+  productColor     productColor[]
+  productSize      productSize[]
+  productReview    productReview?
+  productDetials   productDetials?  @relation(fields: [productDetialsId], references: [id])
+  productDetialsId String?          @unique
+  isCancellable    Boolean          @default(false)
+  isRefunable      Boolean          @default(false)
+}
+
+model productReview {
+  id          String   @id @default(cuid())
+  productName String
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  rating      Int
+  title       String
+  description String
+
+  prouct    product? @relation(fields: [productId], references: [id])
+  productId String?  @unique
+}
+
+model productVariant {
+  id          String         @id @default(cuid())
+  status      Boolean        @default(true)
+  productName String
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+  prouct      product?       @relation(fields: [productId], references: [id])
+  productId   String
+  brandName   String
+  stock       Decimal
+  mrp         Decimal
+  price       Decimal
+  sku         Int
+  images      mutipleImage[]
+}
+
+model coupon {
+  id               String           @id @default(cuid())
+  seller           seller           @relation(fields: [sellerId], references: [id])
+  sellerId         String
+  createdAt        DateTime         @default(now())
+  updatedAt        DateTime         @updatedAt
+  expired          DateTime
+  offerPercent     Decimal
+  miniMumValue     Decimal
+  maxiMumValue     Decimal
+  maxiNumDisccount Decimal
+  category         sellerCategory[]
 }

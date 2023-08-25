@@ -7,13 +7,21 @@ const authTypes = gql`
   type getUser {
     name: String
   }
+  type token {
+    token: String
+  }
 
   type Query {
     getUser: getUser
+    checkEmailToken(token: String!): status
+  }
+  type status {
+    status: Boolean
   }
 
   type Mutation {
-    addUser: getUser
+    sellerRegistration(email: String!, name: String!, password: String!): token
+    verifyEmail(token: String!): token
   }
 `;
 

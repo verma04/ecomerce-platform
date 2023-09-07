@@ -61,7 +61,11 @@ export const GET_USER = gql`
       sellerProfile {
         firstName
         lastName
-
+        logo {
+          alt
+          description
+          url
+        }
         slug
         storeName
       }

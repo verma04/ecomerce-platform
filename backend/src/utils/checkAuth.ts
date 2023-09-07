@@ -1,15 +1,17 @@
 import { AuthenticationError } from "apollo-server-express";
 import moment from "moment";
 import { decryptToken } from "./crypto";
-
+import { ApolloError } from "apollo-server-errors";
 const jwt = require("jsonwebtoken");
 
 const checkAuth = async (context: any) => {
+  if (!context.req.headers.authorization) {
+    throw new ApolloError(`Permission Denied`);
+  }
   // context = { ...headers }
 
   const authHeader = await decryptToken(context.req.headers.authorization);
 
-  console.log(authHeader);
   if (authHeader) {
     // convention for tokens: "Bearer ..."
     const token = authHeader.split("Bearer ")[1];

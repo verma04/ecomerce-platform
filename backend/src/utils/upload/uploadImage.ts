@@ -25,6 +25,7 @@ const uploadImage = async (file: any) => {
   const data = {
     imgUrl: `/${newFilename}`,
   };
+  console.log(data);
 
   return data.imgUrl;
 };

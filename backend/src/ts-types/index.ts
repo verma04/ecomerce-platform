@@ -3,6 +3,9 @@ export interface seller {
   name: string;
   password: string;
   token: string;
+  id: string;
+  firstName: string;
+  lastName: string;
 }
 
 export interface email {
@@ -13,6 +16,9 @@ export interface email {
 
 export interface sellerProfile {
   name: string;
+  firstName: string;
+  lastName: string;
+  phone: string;
   category: string;
   token: string;
   sellerLogo: string;
@@ -34,6 +40,8 @@ export interface sellerAddress {
   state: string;
   city: string;
   pinCode: string;
+
+  country: string;
 }
 
 export interface sellerBankAccount {
@@ -53,4 +61,11 @@ export interface sellerProduct {
   brandName: string;
   productCategory: string;
   productImage: string;
+}
+
+export interface sellerBankAccount {
+  accountNumber: string;
+  ifscCode: string;
+  bankName: string;
+  isPrimary: string;
 }

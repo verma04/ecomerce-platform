@@ -43,7 +43,7 @@
     "build": "tsc",
     "start:admin": "tsc & nodemon dist/admin/index.js",
     "dev:admin": "nodemon src/admin/index.ts",
-    "dev:seller": "nodemon src/merchant/index.ts"
+    "dev:seller": "nodemon src/seller/index.ts"
   },
   "keywords": [],
   "author": "",

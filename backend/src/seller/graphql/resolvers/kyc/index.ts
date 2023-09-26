@@ -16,6 +16,20 @@ import uploadImage from "../../../../utils/upload/uploadImage";
 
 const kycResolvers = {
   Query: {
+    async getBusinessCategory(_: any, {}, context: any) {
+      try {
+        const data = await checkAuth(context);
+        const category = await db.businessCategory.findMany({
+          where: {
+            isActive: true,
+          },
+        });
+
+        return category;
+      } catch (error) {
+        throw error;
+      }
+    },
     async getSellerProfile(_: any, {}, context: any) {
       try {
         const data = await checkAuth(context);
@@ -83,7 +97,11 @@ const kycResolvers = {
       }
     },
 
-    async storeKyc(_: any, { gstIn, storeName, logo }: any, context: any) {
+    async storeKyc(
+      _: any,
+      { gstIn, storeName, logo, businessCategory }: any,
+      context: any
+    ) {
       try {
         const data = await checkAuth(context);
         const check = await checkGstNumber(gstIn);
@@ -110,6 +128,11 @@ const kycResolvers = {
             gstIn,
             storeName,
             slug,
+            businessCategory: {
+              connect: {
+                id: businessCategory,
+              },
+            },
             logo: {
               create: {
                 url: image,

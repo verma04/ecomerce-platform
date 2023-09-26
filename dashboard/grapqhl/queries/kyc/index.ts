@@ -32,8 +32,18 @@ export const KYC_SELLER_PROFILE = gql`
   }
 `;
 export const KYC_STORE = gql`
-  mutation Mutation($gstIn: String!, $storeName: String!, $logo: Upload) {
-    storeKyc(gstIn: $gstIn, storeName: $storeName, logo: $logo) {
+  mutation Mutation(
+    $gstIn: String!
+    $storeName: String!
+    $logo: Upload
+    $businessCategory: String!
+  ) {
+    storeKyc(
+      gstIn: $gstIn
+      storeName: $storeName
+      logo: $logo
+      businessCategory: $businessCategory
+    ) {
       gstIn
       id
     }
@@ -74,6 +84,15 @@ export const BANK_ACCOUNT = gql`
       ifscCode: $ifscCode
       bankName: $bankName
     ) {
+      id
+    }
+  }
+`;
+
+export const BUSINESS_CATEGORY = gql`
+  query GetBusinessCategory {
+    getBusinessCategory {
+      title
       id
     }
   }

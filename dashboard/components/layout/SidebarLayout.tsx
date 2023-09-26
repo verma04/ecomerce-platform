@@ -47,6 +47,8 @@ export default function SidebarDrawer({ window, children }: Props) {
   const router = useRouter();
 
   const currentRoute = usePathname();
+
+  console.log(currentRoute);
   const { palette } = useTheme();
   const drawer = (
     <Box
@@ -105,15 +107,14 @@ export default function SidebarDrawer({ window, children }: Props) {
               <Link style={{ textDecoration: "none" }} href={t.url}>
                 <ListItem
                   sx={{
-                    background:
-                      currentRoute === t.url
-                        ? " rgb(90, 94, 102)"
-                        : "transparent",
+                    background: currentRoute.includes(t.url)
+                      ? " rgb(90, 94, 102)"
+                      : "transparent",
                   }}
                   key={index}
                   disablePadding
                 >
-                  {currentRoute === t.url && (
+                  {currentRoute.includes(t.url) && (
                     <Box
                       sx={{
                         backgroundColor: "rgb(142, 150, 163)",

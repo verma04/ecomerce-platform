@@ -32,11 +32,6 @@ export const theme = createTheme({
       fontSize: "0.7rem",
       fontWeight: 400,
     },
-    button: {
-      fontSize: "0.8rem",
-      backgroundColor: "#047B67",
-      color: "white",
-    },
   },
   palette: {
     primary: {

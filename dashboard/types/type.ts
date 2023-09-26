@@ -5,6 +5,73 @@ export type Inputs = {
   password: string;
 };
 
+export  type InformationProduct {
+  productName: String;
+  category: String
+  price: String;
+  discountedPrice: String;
+  productPerUnit: String;
+  unit: String;
+
+
+}
+export  interface informationProduct {
+  productName?: String | undefined;
+  category?:String
+  price?: Number | null;
+  discountedPrice?: Number | null;
+  productPerUnit?: string;
+  unit?: String;
+
+}
+
+export interface inventory {
+  quantity: Number | null
+  sku: String
+  warehouse:String
+
+}
+
+
+export  interface productInformationProps {
+  productInformation: informationProduct
+  setProductInformation: any
+  handleNext:any
+}
+
+
+export  interface inventoryProps {
+  inventory: inventory
+  setInventory: any
+  handleNext:any
+}
+interface variant {
+  value? :string
+  name? : String
+}
+ export interface generatedVariant {
+  id:String
+  variant: variant
+  price: Number
+   stock: Number
+    discountedPrice:Number
+  }
+   
+
+
+
+export  interface variantProps {
+  productInformation: informationProduct
+  inventory: inventory
+  variant: [variant]
+  setVariant: any
+  variantGenerated: any
+  setVariantGenerated:any
+}
+export type Category = {
+  title: string;
+  
+};
 export type Address = {
   state: string;
   city: string;
@@ -23,6 +90,21 @@ export type imageInput = {
   description: string;
   caption: string;
 };
+
+export type image = {
+  name: string;
+  alt: string;
+  description: string;
+  caption: string;
+  url:String
+};
+
+export type ImageProps = {
+  img: image[];
+  handleNext: any
+  setImg:any
+};
+
 
 export type categoryInput = {
   name: string;
@@ -68,5 +150,19 @@ export interface SellerBankAccount {
 export type FormLayout {
   children: React.ReactNode;
   backUrl?: string | undefined;
-  buttonName?:  string | undefined;
+  buttonName?: string | undefined;
+  loading: Boolean
+}
+
+
+export interface WareHouseType {
+  wareHouseName: string;
+  contactPerson: string;
+  mobileNumber: string;
+  addressLine1: string;
+  addressLine2: string;
+  pinCode: string;
+  city: string;
+  state: string;
+  gstIn: string;
 }

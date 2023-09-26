@@ -4,20 +4,32 @@ const { ApolloServer, gql } = require("apollo-server-express");
 const categoryTypes = gql`
   type sellerCategory {
     id: ID
-    title: String
+    category: category
+    subCategory: category
+    product: [sellerProduct]
     description: String
     categoryImage: images
+    status: Boolean
+    sort: Int
+    title: String
+  }
+  type category {
+    id: ID
+    title: String
+    subCategory: [sellerCategory]
   }
 
   type Query {
     getSellerCategory: [sellerCategory]
+    getCategorySelect: [category]
   }
 
   type Mutation {
     addSellerCategory(
-      title: String!
-      description: String!
-      categoryImage: String!
+      category: String!
+      subCategory: String!
+      description: String
+      categoryImage: String
     ): sellerCategory
   }
 `;

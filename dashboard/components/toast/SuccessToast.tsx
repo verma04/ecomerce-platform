@@ -13,22 +13,5 @@ const Alert = React.forwardRef<HTMLDivElement, AlertProps>(function Alert(
 });
 
 export default function SuccessToast({ message }) {
-  const [open, setOpen] = React.useState(true);
-
-  const handleClick = () => {
-    setOpen(true);
-  };
-
-  const handleClose = (
-    event?: React.SyntheticEvent | Event,
-    reason?: string
-  ) => {
-    if (reason === "clickaway") {
-      return;
-    }
-
-    setOpen(false);
-  };
-
-  return <>{toast.success("Successfully toasted!")}</>;
+  return <>{toast.success(message)}</>;
 }

@@ -3,36 +3,66 @@ const { ApolloServer, gql } = require("apollo-server-express");
 // const { Parking } = require('../models/Parking');
 const productTypes = gql`
   type sellerProduct {
-    id: ID
-    title: String
-    description: String
+    isActive: Boolean
+    productInformation: productInformation
+    inventory: inventory
+    sellerCategory: sellerCategory
+    productVariant: [productVariant]
+    variant: [variant]
+    id: String
+    img: [images]
+  }
+  type productInformation {
+    id: String
+    productName: String
+    price: Int
+    discountedPrice: Int
+    productPerUnit: Int
+    unit: String
+  }
+  type inventory {
+    id: String
+    quantity: Int
+    sku: String
+    warehouse: wareHouse
+  }
+  type variant {
+    name: String
+    type: String
+    variantList: [variantList]
+  }
+
+  type variantList {
+    id: String
+    value: String
+  }
+  type combination {
+    id: String
+    value: String
+    name: String
+  }
+
+  type productVariant {
+    id: String
+    discountedPrice: Int
+    price: Int
+    stock: Int
+    combination: [combination]
   }
 
   type Query {
     getSellerProduct: [sellerProduct]
   }
 
-  type color {
-    title: String
-    color: [array]
-    images: images
-  }
-  type array {
-    title: String
-  }
-
   type Mutation {
     addSellerProduct(
-      productName: String!
-      description: String!
-      categoryImage: String!
-      productCategory: String!
-      productImage: String!
-      brandName: String!
+      productInformation: String!
+      variant: String!
+      inventory: String!
+      variantGenerated: String!
+      img: String!
     ): sellerProduct
-    editProductColor(productId: String!, title: String, sizes: String!): color
-    editProductSize(productId: String!, title: String, sizes: String!): color
-    createVariants(productId: String!): sellerProduct
+    changeProductStatus(id: String!, status: Boolean!): sellerProduct
   }
 `;
 

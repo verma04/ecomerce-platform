@@ -1,20 +1,21 @@
 import Redirect from "@/comman/Redirect";
 import BackSvg from "@/svg/BackSvg";
 import { FormLayout } from "@/types/type";
+import { LoadingButton } from "@mui/lab";
 import { Box, Button } from "@mui/material";
 import { useRouter } from "next/router";
 import React from "react";
 
-const FormLayout = ({ children, backUrl, buttonName }: FormLayout) => {
+const FormLayout = ({ children, backUrl, buttonName, loading }: FormLayout) => {
   const router = useRouter();
   return (
-    <form style={{ width: "100%", position: "relative" }}>
+    <Box style={{ width: "100%", position: "relative" }}>
       <Box
-        width={"100%"}
+        width={"80%"}
         sx={{
-          top: "-10vh",
+          top: "1%",
           zIndex: 100,
-          position: "absolute",
+          position: "fixed",
           height: "3rem",
           display: "flex",
           justifyContent: "space-between",
@@ -28,9 +29,15 @@ const FormLayout = ({ children, backUrl, buttonName }: FormLayout) => {
           <BackSvg />
         </Box>
         <Box>
-          <Button sx={{ color: "white" }}>
-            {buttonName ? buttonName : "Add"}
-          </Button>
+          {loading ? (
+            <LoadingButton loading variant="outlined">
+              Fetch data
+            </LoadingButton>
+          ) : (
+            <Button type="submit" sx={{ color: "white" }}>
+              {buttonName ? buttonName : "Add"}
+            </Button>
+          )}
         </Box>
       </Box>
       <Box display={"flex"} justifyContent={"center"} width={"100%"}>
@@ -38,7 +45,7 @@ const FormLayout = ({ children, backUrl, buttonName }: FormLayout) => {
           {children}
         </Box>
       </Box>
-    </form>
+    </Box>
   );
 };
 

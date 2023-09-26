@@ -17,6 +17,7 @@ const authResolvers = {
   Query: {
     async getUser(_: any, {}, context: any) {
       const data = await checkAuth(context);
+
       const get = await db.seller.findUnique({
         where: {
           id: data.id,

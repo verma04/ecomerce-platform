@@ -1,5 +1,5 @@
 import { addImage } from "@/grapqhl/actions/assets";
-import ImageUploadLabel from "../../../comman/ImagePop.tsx/ImageUplaodLabel";
+import ImageUploadLabel from "../../../comman/ImagePop/ImageUplaodLabel";
 
 import { imageInput } from "@/types/type";
 import { LoadingButton } from "@mui/lab";

@@ -1,15 +1,34 @@
 import { StoreKyc, multiStep } from "@/types/type";
-import { Box, Button, InputLabel, TextField, Typography } from "@mui/material";
+import {
+  Box,
+  Button,
+  FormControl,
+  FormHelperText,
+  InputLabel,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  TextField,
+  Typography,
+} from "@mui/material";
 import React, { useState } from "react";
 import ImageUpload from "../comman/ImageUpload/ImageUpload";
 import { Label } from "@mui/icons-material";
-import { storeKyc } from "@/grapqhl/actions/kyc";
+import { getBusinessCategory, storeKyc } from "@/grapqhl/actions/kyc";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { LoadingButton } from "@mui/lab";
 
 const Store = ({ handleNext }: multiStep) => {
+  const { data: cat } = getBusinessCategory();
+
+  const [error, setError] = React.useState(false);
   const [img, setImg] = useState(null);
   const [image, setImage] = useState(null);
+  const [category, setCategory] = React.useState("");
+
+  const handleChange = (event: SelectChangeEvent) => {
+    setCategory(event.target.value);
+  };
   const [add, { data: kyc, loading: load }] = storeKyc();
   const {
     register,
@@ -19,10 +38,14 @@ const Store = ({ handleNext }: multiStep) => {
   } = useForm<StoreKyc>();
 
   const onSubmit: SubmitHandler<StoreKyc> = (data) => {
-    console.log(image);
-    add({
-      variables: { ...data, logo: image },
-    });
+    if (cat === "") {
+      setError(true);
+    } else {
+      setError(false);
+      add({
+        variables: { ...data, logo: image, businessCategory: category },
+      });
+    }
   };
   return (
     <Box
@@ -64,6 +87,23 @@ const Store = ({ handleNext }: multiStep) => {
             helperText={errors.storeName && errors.storeName.message}
           />
         </Box>
+
+        <FormControl sx={{ width: "60%", marginTop: "2rem" }} error={error}>
+          <InputLabel id="demo-simple-select-error-label">
+            Business Category
+          </InputLabel>
+          <Select
+            labelId="demo-simple-select-error-label"
+            id="demo-simple-select-error"
+            value={category}
+            label="Business Category"
+            onChange={handleChange}
+          >
+            {cat?.getBusinessCategory?.map((set: any) => (
+              <MenuItem value={set.id}>{set.title}</MenuItem>
+            ))}
+          </Select>
+        </FormControl>
         <Box
           display={"flex"}
           justifyContent={"flex-start"}

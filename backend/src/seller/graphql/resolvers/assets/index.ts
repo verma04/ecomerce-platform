@@ -7,15 +7,16 @@ const assetsResolvers = {
     async getAllImages(_: any, {}, context: any) {
       try {
         const data = await checkAuth(context);
-        console.log(data);
 
         const category = await db.image.findMany({
+          orderBy: {
+            createdAt: "desc",
+          },
           where: {
             sellerId: data.id,
           },
         });
 
-        console.log(category);
         return category;
       } catch (error) {
         console.log(error);

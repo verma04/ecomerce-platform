@@ -31,6 +31,10 @@ const kycTypes = gql`
     firstName: String
     lastName: String
   }
+  type businessCategory {
+    title: String
+    id: ID
+  }
 
   type id {
     id: ID
@@ -45,10 +49,16 @@ const kycTypes = gql`
   }
   type Query {
     getSellerProfile: sellerProfile
+    getBusinessCategory: [businessCategory]
   }
 
   type Mutation {
-    storeKyc(gstIn: String!, storeName: String!, logo: Upload): gstIn
+    storeKyc(
+      gstIn: String!
+      storeName: String!
+      logo: Upload
+      businessCategory: String!
+    ): gstIn
     sellerAddress(
       addressLine1: String!
       addressLine2: String!

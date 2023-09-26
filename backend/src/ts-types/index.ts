@@ -1,3 +1,5 @@
+import { type } from "os";
+
 export interface seller {
   email: string;
   name: string;
@@ -54,6 +56,8 @@ export interface sellerCategory {
   title: string;
   description: string;
   categoryImage: string;
+  category: string;
+  subCategory: string;
 }
 
 export interface sellerProduct {
@@ -68,4 +72,17 @@ export interface sellerBankAccount {
   ifscCode: string;
   bankName: string;
   isPrimary: string;
+}
+
+export interface sellerWareHouse {
+  id: string;
+  wareHouseName: string;
+  contactPerson: string;
+  mobileNumber: string;
+  addressLine1: string;
+  addressLine2: string;
+  pinCode: string;
+  city: string;
+  state: string;
+  gstIn: string;
 }

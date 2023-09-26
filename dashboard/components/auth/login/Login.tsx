@@ -1,17 +1,12 @@
 import React from "react";
-
 import { Box, Button, Divider, Typography } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import TextField from "@mui/material/TextField";
-
 import AuthLayout from "../Layout/AuthLayout";
 import { Inputs } from "@/types/type";
 import { SubmitHandler, useForm } from "react-hook-form";
-
 import { useRouter } from "next/navigation";
-
 import { LoadingButton } from "@mui/lab";
-
 import Link from "next/link";
 import { sellerLogin } from "@/grapqhl/actions/auth";
 import { ErrorMessage } from "@/components/error/ErrorMessage";

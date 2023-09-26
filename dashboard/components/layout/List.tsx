@@ -31,10 +31,16 @@ const data = [
         url: "/product",
       },
       {
+        name: "Inventory",
+        svg: <OrderSvg />,
+        url: "/ware-house",
+      },
+      {
         name: "Orders",
         svg: <OrderSvg />,
         url: "/orders",
       },
+
       {
         name: "Payments",
         svg: <PaymentSvg />,

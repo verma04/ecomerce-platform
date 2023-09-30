@@ -4,6 +4,7 @@ import { imagesTypes } from "./assets";
 import { productTypes } from "./product";
 import { kycTypes } from "./kyc";
 import { wareHouseTypes } from "./warehouse";
+import { customerTypes } from "./customer";
 
 const types = [
   authTypes,
@@ -12,6 +13,7 @@ const types = [
   productTypes,
   kycTypes,
   wareHouseTypes,
+  customerTypes,
 ];
 
 export default types;

@@ -97,7 +97,7 @@ export default function SidebarDrawer({ window, children }: Props) {
           justifyContent={"center"}
           flexDirection={"column"}
           alignItems={"flex-start"}
-          marginBottom={"2rem"}
+          marginBottom={"1.2rem"}
         >
           <Typography sx={{ fontSize: "0.8rem", color: "rgb(142, 150, 163)" }}>
             {set.category}
@@ -119,7 +119,7 @@ export default function SidebarDrawer({ window, children }: Props) {
                       sx={{
                         backgroundColor: "rgb(142, 150, 163)",
                         width: "0.25rem",
-                        height: "2rem",
+                        height: "1.5rem",
                         borderTopRightRadius: "0.25rem",
                         borderBottomRightRadius: "0.25rem",
                       }}

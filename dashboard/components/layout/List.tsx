@@ -42,6 +42,11 @@ const data = [
       },
 
       {
+        name: "Customers",
+        svg: <ProductSvg />,
+        url: "/customers",
+      },
+      {
         name: "Payments",
         svg: <PaymentSvg />,
         url: "/payments",

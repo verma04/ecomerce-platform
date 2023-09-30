@@ -5,48 +5,23 @@ import Step from "@mui/material/Step";
 import StepButton from "@mui/material/StepButton";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-import ProductInformation from "./ProductInformation";
+import SelectCategory from "./SelectCategory";
 import CategoryDetails from "./CategoryDetails";
-import Variant from "./Variant/Variant";
+import CategoryImages from "./CategoryImages";
 import { addSellerCategory } from "@/grapqhl/actions/category";
-
+import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/navigation";
-import { image, informationProduct, inventory } from "@/types/type";
+import Redirect from "@/comman/Redirect";
 import { ErrorMessage } from "@/components/error/ErrorMessage";
 import toast from "react-hot-toast";
-import Inventory from "./Inventory";
-import Preview from "./Preview";
 
-export default function AddProduct() {
+export default function AddPromotion() {
   const router = useRouter();
   const [add, { data, loading, error }] = addSellerCategory();
   const [activeStep, setActiveStep] = React.useState(0);
   const [completed, setCompleted] = React.useState<{
     [k: number]: boolean;
   }>({});
-
-  const [variant, setVariant] = React.useState([]);
-  const [variantGenerated, setVariantGenerated] = React.useState<
-    generatedVariant[]
-  >([]);
-
-  const [img, setImg] = React.useState<image[]>([]);
-
-  const [productInformation, setProductInformation] =
-    React.useState<informationProduct>({
-      productName: "",
-      category: "",
-      price: null,
-      discountedPrice: null,
-      productPerUnit: "",
-      unit: "",
-    });
-
-  const [inventory, setInventory] = React.useState<inventory>({
-    quantity: "",
-    warehouse: "",
-    sku: "",
-  });
 
   const totalSteps = () => {
     return steps.length;
@@ -79,67 +54,44 @@ export default function AddProduct() {
   };
 
   const handleStep = (step: number) => () => {
-    setActiveStep(step);
+    subCategory === "" ? console.log("err") : setActiveStep(step);
   };
+
+  const handleComplete = () => {
+    add({
+      variables: { category, subCategory, description },
+    });
+  };
+
+  const [description, setDescription] = React.useState("");
+  const [category, setCategory] = React.useState("");
+  const [subCategory, setSubCategory] = React.useState("");
 
   const steps = [
     {
-      title: "Product Information",
+      title: "Select Category",
       components: (
-        <ProductInformation
-          handleNext={handleNext}
-          productInformation={productInformation}
-          setProductInformation={setProductInformation}
+        <SelectCategory
+          category={category}
+          setCategory={setCategory}
+          subCategory={subCategory}
+          setSubCategory={setSubCategory}
         />
       ),
     },
     {
-      title: "Product Media",
-      components: (
-        <CategoryDetails img={img} setImg={setImg} handleNext={handleNext} />
-      ),
-    },
-
-    {
-      title: "Inventory",
-      components: (
-        <Inventory
-          inventory={inventory}
-          setInventory={setInventory}
-          handleNext={handleNext}
-        />
-      ),
-    },
-
-    {
-      title: "Variants",
-      components: (
-        <Variant
-          productInformation={productInformation}
-          inventory={inventory}
-          variant={variant}
-          setVariant={setVariant}
-          variantGenerated={variantGenerated}
-          setVariantGenerated={setVariantGenerated}
-          handleNext={handleNext}
-          img={img}
-        />
-      ),
+      title: "Add Product Details",
+      components: <CategoryDetails />,
     },
     {
-      title: "Preview",
-      components: (
-        <Preview
-          productInformation={productInformation}
-          inventory={inventory}
-          variantGenerated={variantGenerated}
-          variant={variant}
-          img={img}
-        />
-      ),
+      title: "Add Category Images",
+      components: <CategoryImages />,
     },
   ];
 
+  if (data) {
+    router.push("/categories");
+  }
   if (error) {
     toast.error(
       <>
@@ -153,7 +105,7 @@ export default function AddProduct() {
 
   return (
     <Box width={"100%"} display={"flex"} justifyContent={"center"}>
-      <Box sx={{ width: "80%", padding: "2rem", backgroundColor: "white" }}>
+      <Box sx={{ width: "70%", padding: "2rem", backgroundColor: "white" }}>
         <Stepper nonLinear activeStep={activeStep}>
           {steps.map((label, index) => (
             <Step key={label} completed={completed[index]}>
@@ -178,6 +130,33 @@ export default function AddProduct() {
                 Back
               </Button>
               <Box sx={{ flex: "1 1 auto" }} />
+              {activeStep === 0 && (
+                <Button
+                  disabled={subCategory === ""}
+                  onClick={handleNext}
+                  sx={{ mr: 1 }}
+                >
+                  Next
+                </Button>
+              )}
+              {activeStep === 1 && (
+                <Button onClick={handleNext} sx={{ mr: 1 }}>
+                  Next
+                </Button>
+              )}
+              {activeStep === 2 && (
+                <>
+                  {loading ? (
+                    <LoadingButton loading sx={{ mr: 1 }}>
+                      Fetch data
+                    </LoadingButton>
+                  ) : (
+                    <Button onClick={handleComplete} sx={{ mr: 1 }}>
+                      Add
+                    </Button>
+                  )}
+                </>
+              )}
             </Box>
           </React.Fragment>
         </Box>

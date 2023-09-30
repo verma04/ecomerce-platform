@@ -6,6 +6,7 @@ import { assetsResolvers } from "./assets";
 import { productResolvers } from "./product";
 import { kycResolvers } from "./kyc";
 import { warehouseResolvers } from "./warehouse";
+import { customerResolvers } from "./customer";
 const resolvers = {
   Upload: GraphQLUpload,
 
@@ -16,6 +17,7 @@ const resolvers = {
     ...productResolvers.Query,
     ...kycResolvers.Query,
     ...warehouseResolvers.Query,
+    ...customerResolvers.Query,
   },
   Mutation: {
     ...authResolvers.Mutation,
@@ -24,6 +26,7 @@ const resolvers = {
     ...productResolvers.Mutation,
     ...kycResolvers.Mutation,
     ...warehouseResolvers.Mutation,
+    ...customerResolvers.Mutation,
   },
 };
 

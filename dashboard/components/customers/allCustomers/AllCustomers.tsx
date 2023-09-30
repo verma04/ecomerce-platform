@@ -4,15 +4,16 @@ import { Box } from "@mui/material";
 import React from "react";
 import List from "./List";
 import LoadingTable from "@/Loading/LoadingTable";
+import { getAllCustomer } from "@/grapqhl/actions/customer";
 
-const AllCategory = () => {
-  const { data, loading, refetch } = getSellerCategory();
+const AllCustomers = () => {
+  const { data, loading, refetch } = getAllCustomer();
   return (
     <Box width="100%">
       {loading && <LoadingTable />}
-      {!loading && <List data={data?.getSellerCategory} refresh={refetch} />}
+      {!loading && <List data={data?.getAllCustomer} refresh={refetch} />}
     </Box>
   );
 };
 
-export default AllCategory;
+export default AllCustomers;

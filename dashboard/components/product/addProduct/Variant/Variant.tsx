@@ -25,6 +25,7 @@ import { v4 as uuidv4 } from "uuid";
 import cartesian from "@/utils/generateVariants";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
 import { green, red } from "@mui/material/colors";
+import EditVariant from "./EditVariant";
 const Variant = ({
   productInformation,
   inventory,
@@ -33,6 +34,7 @@ const Variant = ({
   variantGenerated,
   setVariantGenerated,
   handleNext,
+  img: imgs,
 }: variantProps) => {
   const [add, { data, loading, error }] = addSellerCategory();
 
@@ -82,7 +84,6 @@ const Variant = ({
 
   React.useEffect(() => {
     const data = cartesian(variant.map((set) => set.list));
-    console.log(data);
 
     setVariantGenerated(
       data?.map((set) => ({
@@ -91,6 +92,8 @@ const Variant = ({
         price: productInformation.price,
         discountedPrice: productInformation.discountedPrice,
         stock: inventory.quantity,
+        sku: inventory.sku,
+        img: imgs,
       }))
     );
   }, [variant]);
@@ -205,7 +208,12 @@ const Variant = ({
         </Box> */}
         {variant.length <= 3 && <VariantPop addVariant={addVariant} />}
 
-        <Box width={"100%"} marginTop={"2rem"} overflow={"scroll"}>
+        <Box
+          sx={{ overflowX: "scroll" }}
+          width={"100%"}
+          marginTop={"2rem"}
+          overflow={"scroll"}
+        >
           <Box
             width={"100%"}
             bgcolor={"#f2f2f2"}
@@ -214,7 +222,6 @@ const Variant = ({
             justifyContent={"space-between"}
             alignItems={"center"}
             paddingTop={"0.2rem"}
-            overflow={"scroll"}
           >
             <Box width={"20rem"} marginLeft={"1rem"}>
               Variant
@@ -233,7 +240,7 @@ const Variant = ({
             </Box>
             <Box width={"10rem"} marginLeft={"2rem"}></Box>
           </Box>
-          <Box width={"100%"} overflow={"scroll"}>
+          <Box width={"100%"}>
             {variantGenerated?.map((set) => (
               <Box
                 marginTop={"1rem"}
@@ -243,60 +250,76 @@ const Variant = ({
                 alignItems={"center"}
                 borderBottom="1px solid #f2f2f2"
               >
-                <Box width={"15rem"}>
-                  <Box width={"15rem"} display={"flex"}>
-                    {set.variant.map((t, index) => (
-                      <Box display={"flex"}>
-                        <Typography
-                          fontSize={"0.9rem"}
-                          pr={"0.2rem"}
-                          pl={"0.2rem"}
-                        >
-                          {index === 0 ? "" : "/"}
+                <Box width={"20rem"}>
+                  <Box display={"flex"} alignItems={"center"}>
+                    {set?.img?.length !== 0 && (
+                      <img
+                        style={{
+                          width: "4rem",
+                          height: "4rem",
+                          objectFit: "cover",
+                        }}
+                        alt={`${process.env.NEXT_PUBLIC_IMG}${set.img[0].url}`}
+                        src={`${process.env.NEXT_PUBLIC_IMG}${set.img[0].url}`}
+                      />
+                    )}
+                    <Box display={"flex"}>
+                      {set.variant.map((t, index) => (
+                        <Box display={"flex"}>
+                          <Typography
+                            fontSize={"0.9rem"}
+                            pr={"0.2rem"}
+                            pl={"0.2rem"}
+                          >
+                            {index === 0 ? "" : "/"}
+                          </Typography>
+                          <Typography fontSize={"0.9rem"}>
+                            {" "}
+                            {t.value}
+                          </Typography>
+                        </Box>
+                      ))}
+                    </Box>
+                    {set.stock > 0 && (
+                      <Box
+                        color={green[700]}
+                        bgcolor={green[100]}
+                        sx={{
+                          ml: "0.5rem",
+                          textTransform: "uppercase",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          pt: "0.2rem",
+                          width: "4.5rem",
+                        }}
+                      >
+                        <Typography sx={{ fontSize: "0.8rem" }}>
+                          in Stock
                         </Typography>
-                        <Typography fontSize={"0.9rem"}> {t.value}</Typography>
                       </Box>
-                    ))}
-                  </Box>
-                  {set.stock > 0 && (
-                    <Box
-                      color={green[700]}
-                      bgcolor={green[100]}
-                      sx={{
-                        ml: "0.5rem",
-                        textTransform: "uppercase",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignContent: "center",
-                        pt: "0.2rem",
-                        width: "4.5rem",
-                      }}
-                    >
-                      <Typography sx={{ fontSize: "0.8rem" }}>
-                        in Stock
-                      </Typography>
-                    </Box>
-                  )}
+                    )}
 
-                  {set.stock < 1 && (
-                    <Box
-                      color={red[700]}
-                      bgcolor={red[100]}
-                      sx={{
-                        ml: "0.5rem",
-                        textTransform: "uppercase",
-                        display: "flex",
-                        justifyContent: "center",
-                        alignContent: "center",
-                        pt: "0.2rem",
-                        width: "5.5rem",
-                      }}
-                    >
-                      <Typography sx={{ fontSize: "0.8rem" }}>
-                        Out of Stock
-                      </Typography>
-                    </Box>
-                  )}
+                    {set.stock < 1 && (
+                      <Box
+                        color={red[700]}
+                        bgcolor={red[100]}
+                        sx={{
+                          ml: "0.5rem",
+                          textTransform: "uppercase",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignContent: "center",
+                          pt: "0.2rem",
+                          width: "5.5rem",
+                        }}
+                      >
+                        <Typography sx={{ fontSize: "0.8rem" }}>
+                          Out of Stock
+                        </Typography>
+                      </Box>
+                    )}
+                  </Box>
                 </Box>
                 <TextField
                   sx={{ width: "10rem", marginLeft: "2rem" }}
@@ -312,6 +335,8 @@ const Variant = ({
                       price: Number(e.target.value),
                       stock: set.stock,
                       discountedPrice: set.discountedPrice,
+                      img: set.img,
+                      sku: set.sku,
                     };
 
                     const index = variantGenerated.findIndex(
@@ -346,6 +371,8 @@ const Variant = ({
                       price: set.price,
                       stock: set.stock,
                       discountedPrice: Number(e.target.value),
+                      img: set.img,
+                      sku: set.sku,
                     };
 
                     const index = variantGenerated.findIndex(
@@ -378,8 +405,10 @@ const Variant = ({
                       id: set.id,
                       variant: set.variant,
                       price: set.price,
+                      sku: set.sku,
                       stock: Number(e.target.value),
                       discountedPrice: set.discountedPrice,
+                      img: set.img,
                     };
                     console.log(data);
 
@@ -387,7 +416,6 @@ const Variant = ({
                     const index = variantGenerated.findIndex(
                       (x) => x.id === set.id
                     );
-                    console.log(index);
 
                     variantGenerated[index] = data;
 
@@ -399,10 +427,34 @@ const Variant = ({
                   size="small"
                   id="outlined-error"
                   label="SKU"
+                  value={set.sku}
+                  onChange={(e) => {
+                    const data = {
+                      id: set.id,
+                      variant: set.variant,
+                      price: set.price,
+                      stock: set.stock,
+                      sku: Number(e.target.value),
+                      discountedPrice: set.discountedPrice,
+                      img: set.img,
+                    };
+                    console.log(data);
+
+                    console.log(variantGenerated);
+                    const index = variantGenerated.findIndex(
+                      (x) => x.id === set.id
+                    );
+
+                    variantGenerated[index] = data;
+
+                    setVariantGenerated([...variantGenerated]);
+                  }}
                 />
-                <Box sx={{ width: "5rem", marginLeft: "2rem" }}>
-                  <Button>Edit</Button>
-                </Box>
+                <EditVariant
+                  data={set}
+                  setVariantGenerated={setVariantGenerated}
+                  variantGenerated={variantGenerated}
+                />
               </Box>
             ))}
           </Box>

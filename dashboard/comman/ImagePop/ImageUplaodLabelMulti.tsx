@@ -33,8 +33,8 @@ const ImageUploadLabelMulti = ({
     flexDirection: "column",
     ".box": {
       marginTop: "1rem",
-      width: "10rem",
-      height: "10rem",
+      width: "7rem",
+      height: "7rem",
       backgroundColor: "#f8faf7",
       display: "flex",
       justifyContent: "center",

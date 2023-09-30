@@ -54,9 +54,17 @@ interface variant {
   variant: variant
   price: Number
    stock: Number
-    discountedPrice:Number
+  discountedPrice:Number
   }
    
+
+   export interface editVariant {
+  id:String
+ sku: variant
+  price: Number
+  stock: Number
+  discountedPrice:Number
+  }
 
 
 
@@ -165,4 +173,22 @@ export interface WareHouseType {
   city: string;
   state: string;
   gstIn: string;
+}
+
+ export interface userType {
+  lastName: string;
+   firstName: string;
+   phone: String
+   email: String
+ }
+
+ export interface userAddressType {
+
+  addressLine1: string;
+  addressLine2: string;
+  pinCode: string;
+  city: string;
+   state: string;
+   country:string
+  
 }

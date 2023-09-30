@@ -132,6 +132,7 @@ model seller {
   Image                Image[]
   uniqueGoogleId       String?     @unique
   isSellerKycCompleted Boolean     @default(false)
+  customer             customer[]
 }
 
 model loginSession {
@@ -200,11 +201,13 @@ model Image {
   updatedAt   DateTime @updatedAt
   seller      seller   @relation(fields: [sellerId], references: [id])
 
-  sellerProfile  sellerProfile[]
-  sellerId       String
-  sellerCategory sellerCategory[]
-  product        product?         @relation(fields: [productId], references: [id])
-  productId      String?
+  sellerProfile    sellerProfile[]
+  sellerId         String
+  sellerCategory   sellerCategory[]
+  product          product?         @relation(fields: [productId], references: [id])
+  productId        String?
+  productVariant   productVariant?  @relation(fields: [productVariantId], references: [id])
+  productVariantId String?
 }
 
 model sellerCategory {
@@ -344,15 +347,14 @@ model combination {
 }
 
 model productVariant {
-  id              String @id @default(cuid())
+  id              String        @id @default(cuid())
   discountedPrice Int
   price           Int
-
-  stock     Int
-  product   product? @relation(fields: [productId], references: [id])
-  productId String?
-
-  combination combination[]
+  img             Image[]
+  stock           Int
+  product         product?      @relation(fields: [productId], references: [id])
+  productId       String?
+  combination     combination[]
 }
 
 model productSize {
@@ -445,4 +447,29 @@ model coupon {
   couponOn         String           @default("all")
   couponOnCategory sellerCategory[]
   couponOnProduct  product[]
+}
+
+model customer {
+  id        String           @id @default(cuid())
+  firstName String
+  lastName  String
+  password  String?
+  email     String
+  phone     String
+  address   customerAddress?
+  seller    seller?          @relation(fields: [sellerId], references: [id])
+  sellerId  String?
+}
+
+model customerAddress {
+  id           String   @id @default(cuid())
+  addressLine1 String?
+  addressLine2 String?
+  landMark     String?
+  state        String?
+  city         String?
+  pinCode      String?
+  country      String?
+  customer     customer @relation(fields: customerId, references: id)
+  customerId   String   @unique
 }

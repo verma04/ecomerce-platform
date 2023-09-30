@@ -120,7 +120,7 @@ const Login = () => {
               marginBottom={"2rem"}
               marginTop={"0.5rem"}
             >
-              New to Shopify? <Link href="/sign-up">Get started</Link>
+              New to UrbanBazaar? <Link href="/sign-up">Get started</Link>
             </Typography>
           </Box>
         </Box>

@@ -93,6 +93,7 @@ const kycResolvers = {
 
         return updated;
       } catch (error) {
+        console.log(error);
         throw error;
       }
     },

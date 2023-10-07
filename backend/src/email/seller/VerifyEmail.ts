@@ -17,7 +17,7 @@ const VerifyEmail = async ({ name, url, email }: any) => {
             <table align="center" width="100%" data-id="react-email-section" border="0" cellPadding="0" cellSpacing="0" role="presentation">
               <tbody>
                 <tr>
-                  <td><img data-id="react-email-img" alt="Vercel" src="https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/urbanbazaar-logo.png" width="150" height="150" style="display:block;outline:none;border:none;text-decoration:none;object-fit:contain;margin-top:0px;margin-bottom:0px;margin-left:auto;margin-right:auto" /></td>
+                  <td><img data-id="react-email-img" alt="Vercel" src="https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/DeshBazaaar-DeshBazaaarLogo.png" width="150" height="150" style="display:block;outline:none;border:none;text-decoration:none;object-fit:contain;margin-top:0px;margin-bottom:0px;margin-left:auto;margin-right:auto" /></td>
                 </tr>
               </tbody>
             </table>

@@ -103,9 +103,6 @@ const authResolvers = {
               },
             },
           },
-          kyc: {
-            create: {},
-          },
         };
 
         const user = await db.seller.create({

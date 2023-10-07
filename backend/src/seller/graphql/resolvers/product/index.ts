@@ -53,8 +53,10 @@ const productResolvers = {
 
         const product = JSON.parse(productInformation);
         const inventoryData = JSON.parse(inventory);
-        const variants = JSON.parse(variant);
-        const productVariant = JSON.parse(variantGenerated);
+        const variants = variant ? JSON.parse(variant) : null;
+        const productVariant = variantGenerated
+          ? JSON.parse(variantGenerated)
+          : null;
         const imgs = JSON.parse(img);
         console.log(imgs);
 

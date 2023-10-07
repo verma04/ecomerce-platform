@@ -59,7 +59,7 @@ const productTypes = gql`
       productInformation: String!
       variant: String!
       inventory: String!
-      variantGenerated: String!
+      variantGenerated: String
       img: String!
     ): sellerProduct
     changeProductStatus(id: String!, status: Boolean!): sellerProduct

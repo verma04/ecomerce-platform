@@ -12,7 +12,7 @@ const uploadImage = async (file: any) => {
   const date = moment().format("YYYYMMDD");
   const randomString = Math.random().toString(36).substring(2, 7);
   const cleanFileName = filename.toLowerCase().replace(/[^a-z0-9]/g, "-");
-  const newFilename = `${date}-${randomString}-${cleanFileName}`;
+  const newFilename = `ondc/${date}-${randomString}-${cleanFileName}`;
   const params = {
     Bucket: "pulseplaydigital",
     Key: newFilename,
@@ -22,6 +22,7 @@ const uploadImage = async (file: any) => {
   };
   const data1 = await s3.upload(params).promise();
   const { Location } = data1;
+  console.log(data1);
   const data = {
     imgUrl: `/${newFilename}`,
   };

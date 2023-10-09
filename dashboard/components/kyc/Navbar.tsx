@@ -2,15 +2,17 @@ import { useTheme } from "@mui/material/styles";
 import { Box } from "@mui/material";
 import Image from "next/image";
 import React from "react";
+import { useGetUser } from "@/grapqhl/actions/auth";
 
 const Navbar = () => {
   const { palette } = useTheme();
+
   return (
     <Box
       position={"fixed"}
       width={"100%"}
       bgcolor={palette.secondary.light}
-      height={"14vh"}
+      height={"10vh"}
       display="flex"
       justifyContent="flex-end"
       alignItems={"center"}
@@ -23,6 +25,7 @@ const Navbar = () => {
         display="flex"
         justifyContent="flex-end"
         alignItems={"center"}
+        marginRight={"2rem"}
       >
         <Image
           src="/DeshBazaarLogoWhite.png"

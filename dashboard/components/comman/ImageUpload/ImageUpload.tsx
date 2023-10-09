@@ -2,7 +2,7 @@ import React from "react";
 import DragImage from "./DragImage";
 import { Box } from "@mui/material";
 
-const ImageUpload = ({ img, setImg, image, setImage }) => {
+const ImageUpload = ({ img, setImg, image, setImage }: any) => {
   return (
     <Box
       width={"100%"}
@@ -19,7 +19,7 @@ const ImageUpload = ({ img, setImg, image, setImage }) => {
         ) : (
           <img
             style={{ width: "100%", height: "100%", objectFit: "cover" }}
-            src="/DeshBazaaarLogo.png"
+            src="/LogoIcon.png"
           />
         )}
       </Box>

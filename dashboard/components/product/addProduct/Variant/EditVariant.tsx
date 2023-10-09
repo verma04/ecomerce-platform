@@ -24,7 +24,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     padding: theme.spacing(1),
   },
 }));
-const EditVariant = ({ data, variantGenerated, setVariantGenerated }) => {
+const EditVariant = ({ data, variantGenerated, setVariantGenerated }: any) => {
   const [img, setImg] = React.useState([...data.img]);
   const [id, setId] = React.useState(data.id);
   const [open, setOpen] = React.useState(false);
@@ -55,7 +55,7 @@ const EditVariant = ({ data, variantGenerated, setVariantGenerated }) => {
 
     console.log(variantGenerated);
 
-    const index = variantGenerated.findIndex((x) => x.id === data.id);
+    const index = variantGenerated.findIndex((x: any) => x.id === data.id);
 
     variantGenerated[index] = set;
 
@@ -114,8 +114,9 @@ const EditVariant = ({ data, variantGenerated, setVariantGenerated }) => {
                   alignItems={"center"}
                   flexWrap={"wrap"}
                 >
-                  {img.map((set) => (
+                  {img.map((set, index) => (
                     <img
+                      key={index}
                       style={{
                         width: "7rem",
                         height: "7rem",

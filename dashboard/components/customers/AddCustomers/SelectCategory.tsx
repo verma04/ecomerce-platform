@@ -18,7 +18,7 @@ import {
 import React from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import toast from "react-hot-toast";
-const CustomersDetails = ({ basic, setBasic, handleNext }) => {
+const CustomersDetails = ({ basic, setBasic, handleNext }: any) => {
   const {
     register,
     handleSubmit,
@@ -77,7 +77,6 @@ const CustomersDetails = ({ basic, setBasic, handleNext }) => {
         <FormControl sx={{ width: "48%" }}>
           <TextField
             id="outlined-error-helper-text"
-            label="Phone"
             sx={{ fontSize: "2rem", width: "100%", marginTop: "2rem" }}
             {...register("phone", {
               required: "required",

@@ -61,6 +61,7 @@ const SaleData = () => {
         >
           {data.labels.map((set, index) => (
             <Box
+              key={index}
               display={"flex"}
               width={"90%"}
               justifyContent={"space-between"}

@@ -99,8 +99,10 @@ const Store = ({ handleNext }: multiStep) => {
             label="Business Category"
             onChange={handleChange}
           >
-            {cat?.getBusinessCategory?.map((set: any) => (
-              <MenuItem value={set.id}>{set.title}</MenuItem>
+            {cat?.getBusinessCategory?.map((set: any, key) => (
+              <MenuItem key={key} value={set.id}>
+                {set.title}
+              </MenuItem>
             ))}
           </Select>
         </FormControl>

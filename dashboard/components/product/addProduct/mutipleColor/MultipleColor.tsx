@@ -4,7 +4,7 @@ import CloseIcon from "@mui/icons-material/Close";
 import nearestColor from "nearest-color";
 import ColorPicker from "./ColorPicker";
 import colorName from "@/utils/colorName";
-const MultipleColor = ({ list, setVariant, data }) => {
+const MultipleColor = ({ list, setVariant, data }: any) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -40,8 +40,9 @@ const MultipleColor = ({ list, setVariant, data }) => {
       justifyContent={"flex-start"}
       flexWrap={"wrap"}
     >
-      {list?.list?.map((set) => (
+      {list?.list?.map((set, index) => (
         <Box
+          key={index}
           display={"flex"}
           justifyContent={"flex-start"}
           alignItems={"center"}

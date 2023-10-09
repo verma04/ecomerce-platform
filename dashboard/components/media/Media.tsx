@@ -17,8 +17,9 @@ const Media = () => {
         justifyContent={"flex-start"}
         flexWrap={"wrap"}
       >
-        {data?.getAllImages?.map((set) => (
+        {data?.getAllImages?.map((set: any, key) => (
           <Box
+            key={key}
             margin={"1rem"}
             border="1px solid grey"
             width={"7rem"}

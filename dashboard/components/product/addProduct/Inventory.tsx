@@ -68,8 +68,8 @@ const Inventory = ({ inventory, setInventory, handleNext }: inventoryProps) => {
               defaultValue={inventory.warehouse}
               helperText={errors.warehouse?.message}
             >
-              {data?.getAllActiveWareHouse.map((t: any) => (
-                <MenuItem value={t.id}>
+              {data?.getAllActiveWareHouse.map((t: any, key: any) => (
+                <MenuItem key={key} value={t.id}>
                   <Typography>{t.wareHouseName}</Typography>
                   {t.isPrimary && (
                     <Box

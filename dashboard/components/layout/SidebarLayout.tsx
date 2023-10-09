@@ -104,7 +104,7 @@ export default function SidebarDrawer({ window, children }: Props) {
           </Typography>
           <List sx={{ width: "100%" }}>
             {set.list.map((t, index) => (
-              <Link style={{ textDecoration: "none" }} href={t.url}>
+              <Link key={index} style={{ textDecoration: "none" }} href={t.url}>
                 <ListItem
                   sx={{
                     background: currentRoute.includes(t.url)
@@ -173,7 +173,7 @@ export default function SidebarDrawer({ window, children }: Props) {
             {/* <MenuIcon />" */}
           </IconButton>
           <Typography variant="h6" noWrap component="div">
-            sddsds
+            {getUser?.sellerProfile?.storeName}
           </Typography>
         </Toolbar>
       </AppBar>

@@ -15,7 +15,7 @@ const SelectCategory = ({
   setCategory,
   subCategory,
   setSubCategory,
-}) => {
+}: any) => {
   const { data, loading, error } = getCategorySelect();
 
   console.log(data, error);
@@ -52,8 +52,10 @@ const SelectCategory = ({
               label="Category"
               onChange={handleChange}
             >
-              {data?.getCategorySelect.map((set: any) => (
-                <MenuItem value={set.id}>{set.title}</MenuItem>
+              {data?.getCategorySelect.map((set: any, key: any) => (
+                <MenuItem key={key} value={set.id}>
+                  {set.title}
+                </MenuItem>
               ))}
             </Select>
           </FormControl>
@@ -79,9 +81,11 @@ const SelectCategory = ({
               onChange={handleChange2}
             >
               {data?.getCategorySelect
-                .find((t) => t.id === category)
-                .subCategory.map((set: any) => (
-                  <MenuItem value={set.id}>{set.title}</MenuItem>
+                .find((t: any) => t.id === category)
+                .subCategory.map((set: any, key: any) => (
+                  <MenuItem key={key} value={set.id}>
+                    {set.title}
+                  </MenuItem>
                 ))}
             </Select>
           </FormControl>

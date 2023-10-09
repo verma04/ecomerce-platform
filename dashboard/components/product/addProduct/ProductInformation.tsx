@@ -94,8 +94,10 @@ const ProductInformation = ({
               error={errors.category && true}
               helperText={errors.category?.message}
             >
-              {data?.getSellerCategory.map((set: any) => (
-                <MenuItem value={set?.id}>{set?.subCategory.title}</MenuItem>
+              {data?.getSellerCategory.map((set: any, index: any) => (
+                <MenuItem key={index} value={set?.id}>
+                  {set?.subCategory.title}
+                </MenuItem>
               ))}
             </TextField>
           </FormControl>
@@ -120,7 +122,6 @@ const ProductInformation = ({
             })}
             type="number"
             inputMode="numeric"
-            pattern="[0-9]*"
             helperText={errors.price && errors.price.message}
             error={errors.price && true}
             InputProps={{
@@ -157,7 +158,7 @@ const ProductInformation = ({
           />
 
           <Box position={"absolute"} right={"-7%"} marginTop={"0.5rem"}>
-            {discountedPrice !== "" ? (
+            {/* {discountedPrice !== "" ? (
               <Box
                 color={green[700]}
                 bgcolor={green[100]}
@@ -174,7 +175,7 @@ const ProductInformation = ({
                   <>{(price * ((100 - discountedPrice) / 100)).toFixed(2)}%</>
                 ) : null}
               </Box>
-            ) : null}
+            ) : null} */}
           </Box>
         </Box>
 
@@ -211,8 +212,10 @@ const ProductInformation = ({
               error={errors.unit && true}
               helperText={errors.unit?.message}
             >
-              {unit.map((set: any) => (
-                <MenuItem value={set}>{set}</MenuItem>
+              {unit.map((set: any, index: any) => (
+                <MenuItem key={index} value={set}>
+                  {set}
+                </MenuItem>
               ))}
             </TextField>
           </FormControl>

@@ -9,8 +9,6 @@ import { redirect, usePathname, useSearchParams } from "next/navigation";
 import { LoadingButton } from "@mui/lab";
 import { useRouter } from "next/navigation";
 
-import { useVerifyOtpLogin } from "@/reactQueryHooks/mutation";
-import useVerifyToken from "@/reactQueryHooks/query";
 interface props {
   id: String;
 }

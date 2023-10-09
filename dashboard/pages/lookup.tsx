@@ -2,7 +2,7 @@ import LookUp from "@/components/auth/login/LookUp";
 import { useRouter, useSearchParams } from "next/navigation";
 import React from "react";
 
-const lookup = () => {
+const Lookup = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
@@ -17,4 +17,4 @@ const lookup = () => {
   return <LookUp />;
 };
 
-export default lookup;
+export default Lookup;

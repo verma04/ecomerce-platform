@@ -24,13 +24,13 @@ const columns: MRT_ColumnDef<Person>[] = [
   },
   {
     accessorKey: "addressLine1",
-    header: "Address Line 2",
+    header: "Address Line 1",
 
     size: 50,
   },
   {
     accessorKey: "addressLine2",
-    header: "AddressLine 2",
+    header: "Address Line 2",
     size: 50,
   },
   {
@@ -46,7 +46,7 @@ const columns: MRT_ColumnDef<Person>[] = [
 
   {
     accessorKey: "pinCode",
-    header: "pinCode",
+    header: "Pin Code",
     size: 50,
   },
   {

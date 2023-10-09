@@ -14,7 +14,7 @@ export default (WrappedComponent: any, options = { ssr: false }) => {
     }
     if (!loading && (!getUser || error) && typeof window !== "undefined") {
       localStorage.removeItem("key");
-      return router.push("/");
+      return router.push("/login");
     }
 
     if (getUser) {

@@ -2,7 +2,7 @@ import { Box, Button, Typography } from "@mui/material";
 import React from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
-import AddCategory from "./addCategpry/AddCategory";
+import AddCategory from "./addProduct/AddProduct";
 const Empty = () => {
   return (
     <Box

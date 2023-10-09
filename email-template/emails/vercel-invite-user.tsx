@@ -55,7 +55,7 @@ export const VercelInviteUserEmail = ({
           <Container className="border border-solid border-[#eaeaea] rounded my-[20px] mx-auto p-[20px] w-[465px]">
             <Section>
               <Img
-                src={`https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/urbanbazaar-logo.png`}
+                src={`https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/DeshBazaaar-DeshBazaaarLogo.png`}
                 width="150"
                 height="150"
                 alt="Vercel"

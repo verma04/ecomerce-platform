@@ -17,7 +17,7 @@ export const addSellerProduct = () =>
         if (getSellerProduct) {
           const data = [...getSellerProduct, addSellerProduct];
           cache.writeQuery({
-            query: ADD_PRODUCT,
+            query: GET_ALL_PRODUCT,
             data: { getSellerProduct: [...data] },
           });
         }

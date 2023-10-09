@@ -45,8 +45,8 @@ const AuthLayout = ({ children, width }: Props) => {
             justifyContent="center"
           >
             <Image
-              src="/logo.png"
-              alt="PulsePlay Logo"
+              src="/DeshBazaarLogo.png"
+              alt="DeshBazaar Logo"
               fill
               style={{ objectFit: "contain" }}
             />

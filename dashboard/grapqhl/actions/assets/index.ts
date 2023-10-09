@@ -9,12 +9,14 @@ export const addImage = () =>
       const { getAllImages }: any = cache.readQuery({
         query: GET_ALL_ASSEST,
       });
+      console.log(getAllImages);
 
       try {
         if (getAllImages) {
           const data = [addImage, ...getAllImages];
+          console.log(data);
           cache.writeQuery({
-            query: ADD_IMAGE,
+            query: GET_ALL_ASSEST,
             data: { getAllImages: [...data] },
           });
         }

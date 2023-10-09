@@ -171,11 +171,7 @@ const ProductInformation = ({
                 }}
               >
                 {price !== "" ? (
-                  <>
-                    {Number(price) *
-                      ((100 - Number(discountedPrice)) / 100).toFixed(2)}
-                    %
-                  </>
+                  <>{(price * ((100 - discountedPrice) / 100)).toFixed(2)}%</>
                 ) : null}
               </Box>
             ) : null}

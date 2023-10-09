@@ -25,7 +25,7 @@ const Navbar = () => {
         alignItems={"center"}
       >
         <Image
-          src="/logo.png"
+          src="/DeshBazaarLogoWhite.png"
           alt="PulsePlay Logo"
           fill
           style={{ objectFit: "contain" }}

@@ -55,7 +55,7 @@ function App(props: MyAppProps) {
 
       <Head>
         <link rel="icon" type="image/x-icon" href="/favicon.png"></link>
-        <title>Urban Bazar</title>
+        <title>DeshBazaaar</title>
         <meta
           name="viewport"
           content="width=device-width, initial-scale=1, maximum-scale=1"

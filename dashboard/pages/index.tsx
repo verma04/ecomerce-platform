@@ -1,8 +1,11 @@
-import Auth from "@/components/auth/Auth";
+import Dashboard from "@/components/dashboard/Dashboard";
+import withAuth from "@/components/hoc/withAuth";
+import Kyc from "@/components/kyc";
+
 import React from "react";
 
-const login = () => {
-  return <Auth />;
+const pages = () => {
+  return <Dashboard />;
 };
 
-export default login;
+export default withAuth(pages);

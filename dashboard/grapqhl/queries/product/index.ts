@@ -55,7 +55,7 @@ const product = `
 `;
 
 export const ADD_PRODUCT = gql`
-  mutation Mutation($productInformation: String!, $variant: String!, $inventory: String!, $variantGenerated: String!, $img: String!) {
+  mutation Mutation($productInformation: String!, $variant: String!, $inventory: String!, $variantGenerated: String, $img: String!) {
   addSellerProduct(productInformation: $productInformation, variant: $variant, inventory: $inventory, variantGenerated: $variantGenerated, img: $img) {
       ${product}
     }

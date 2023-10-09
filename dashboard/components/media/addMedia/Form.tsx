@@ -15,7 +15,7 @@ const FormMedia = ({ image, handleClose }) => {
   const {
     register,
     handleSubmit,
-
+    reset,
     formState: { errors },
   } = useForm<imageInput>();
 
@@ -30,6 +30,7 @@ const FormMedia = ({ image, handleClose }) => {
     mutate({
       variables: set,
     });
+    reset();
 
     // mutate(set);
   };

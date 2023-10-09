@@ -51,6 +51,11 @@ const WithEmail = () => {
     );
   }
 
+  if (data && data?.sellerRegistration?.token) {
+    router.push(`/dashboard`);
+  }
+
+  console.log(data);
   return (
     <AuthLayout>
       <form style={{ width: "100%" }} onSubmit={handleSubmit(onSubmit)}>
@@ -207,7 +212,7 @@ const WithEmail = () => {
               marginBottom={"2rem"}
               marginTop={"1rem"}
             >
-              Already have a Shopify ID? <Link href="/">Log in</Link>
+              Already have a UrbanBazaaar ID? <Link href="/">Log in</Link>
             </Typography>
           </Box>
         </Box>

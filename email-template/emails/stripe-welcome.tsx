@@ -25,7 +25,7 @@ export const StripeWelcomeEmail = () => (
       <Container style={container}>
         <Section align="center" style={box}>
           <Img
-            src={`https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/urbanbazaar-logo.png`}
+            src={`https://pulseplaydigital.sgp1.cdn.digitaloceanspaces.com/DeshBazaaar-DeshBazaaarLogo.png`}
             width="49"
             height="21"
             alt="Stripe"

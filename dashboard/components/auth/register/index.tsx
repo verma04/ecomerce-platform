@@ -113,7 +113,7 @@ const Register = () => {
             marginTop={"0.5rem"}
             sx={{ width: "100%", textAlign: "left" }}
           >
-            Already have a Shopify ID? <Link href="/">Log in </Link>
+            Already have a UrbanBazaaar ID? <Link href="/">Log in </Link>
           </Typography>
         </Box>
       </Box>

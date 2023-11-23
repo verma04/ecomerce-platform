@@ -4,7 +4,7 @@ const bodyParser = require("body-parser"); // Middleware for parsing request bod
 const crypto = require("crypto"); // Node.js crypto module for encryption and decryption
 const _sodium = require("libsodium-wrappers");
 
-const port = 8888; // Port on which the server will listen
+const port = 11111; // Port on which the server will listen
 const PRIVATE_KEY_1 =
   "MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I";
 const PUBLIC_KEY_1 =

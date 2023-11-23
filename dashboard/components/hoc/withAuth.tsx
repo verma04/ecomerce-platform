@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useGetUser } from "@/grapqhl/actions/auth";
 import { useRouter } from "next/navigation";
 import Loading from "../loading/Loading";

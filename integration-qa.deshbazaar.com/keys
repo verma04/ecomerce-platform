@@ -1,0 +1,24 @@
+Signing_private_key: QkJ8wctrsYYp6z8mzJxgTCACopg9hPNcbJuk3yjYBylNWHKdFSOOUV/e2SkIG27rBAySv/m/zcZmMWiHsCQsgA==
+Signing_public_key:  TVhynRUjjlFf3tkpCBtu6wQMkr/5v83GZjFoh7AkLIA=
+Crypto_Privatekey:   MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I
+Crypto_Publickey:    MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=
+
+
+export PRIVATE_KEY=QkJ8wctrsYYp6z8mzJxgTCACopg9hPNcbJuk3yjYBylNWHKdFSOOUV/e2SkIG27rBAySv/m/zcZmMWiHsCQsgA==
+export PUBLIC_KEY=TVhynRUjjlFf3tkpCBtu6wQMkr/5v83GZjFoh7AkLIA=
+export CRYPTO_PRIVATE_KEY=MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I
+export CRYPTO_PUBLIC_KEY=MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=
+
+
+"Signature keyId="buyer-app.ondc.org|207|ed25519",algorithm="ed25519",created="1700715172",expires="1700718772",headers="(created) (expires) digest",signature="QHvnBUyZowTdw9oz56pKxjkdgyXRuTjf8Rhj4SolLNt/pvsU+6X42r4m7qqZRw5Gbqo1LOWa/MWxcU5Ln/BCDg==""
+
+
+python cryptic_utils.py verify_authorisation_header 'Signature keyId="buyer-app.ondc.org|207|ed25519",algorithm="ed25519",created="1700715172",expires="1700718772",headers="(created) (expires) digest",signature="QHvnBUyZowTdw9oz56pKxjkdgyXRuTjf8Rhj4SolLNt/pvsU+6X42r4m7qqZRw5Gbqo1LOWa/MWxcU5Ln/BCDg=="'
+
+
+aRMnVaDFd2BDb/JvkvE3M+/JHz493gBVrZV6DtSnvQ8=
+
+python cryptic_utils.py encrypt "MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I" "MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI="
+
+
+python cryptic_utils.py decrypt "MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I" "MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=" "aRMnVaDFd2BDb/JvkvE3M+/JHz493gBVrZV6DtSnvQ8="

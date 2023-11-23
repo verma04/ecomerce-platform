@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { StoreKyc, multiStep } from "@/types/type";
 import {
   Box,

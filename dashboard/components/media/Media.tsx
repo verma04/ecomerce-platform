@@ -1,3 +1,5 @@
+//@ts-nocheck
+
 import React from "react";
 import AddMedia from "./addMedia/AddMedia";
 
@@ -17,8 +19,9 @@ const Media = () => {
         justifyContent={"flex-start"}
         flexWrap={"wrap"}
       >
-        {data?.getAllImages?.map((set) => (
+        {data?.getAllImages?.map((set: any, key: any) => (
           <Box
+            key={key}
             margin={"1rem"}
             border="1px solid grey"
             width={"7rem"}

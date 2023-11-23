@@ -88,7 +88,7 @@ export const VercelInviteUserEmail = ({
             <Hr className="border border-solid border-[#eaeaea] my-[26px] mx-0 w-full" />
             <Text className="text-[#666666] text-[12px] leading-[24px]">
               If you didn’t ask to verify this address, you can ignore this
-              email. <br /> Thanks, <br /> Team UrbanBazar
+              email. <br /> Thanks, <br /> Team DeshBazaar
             </Text>
           </Container>
         </Body>

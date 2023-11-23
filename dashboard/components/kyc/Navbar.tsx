@@ -9,7 +9,7 @@ const Navbar = () => {
     <Box
       position={"fixed"}
       width={"100%"}
-      bgcolor={palette.secondary.light}
+      bgcolor={"#0B2884"}
       height={"14vh"}
       display="flex"
       justifyContent="flex-end"
@@ -25,7 +25,7 @@ const Navbar = () => {
         alignItems={"center"}
       >
         <Image
-          src="/DeshBazaarLogoWhite.png"
+          src="/DeshBazaar_Logo_White.png"
           alt="PulsePlay Logo"
           fill
           style={{ objectFit: "contain" }}

@@ -194,7 +194,7 @@ const WithEmail = () => {
                   sx={{ width: "100%", marginTop: "2rem", height: "3rem" }}
                   variant="contained"
                 >
-                  Create UrbanBazar Id
+                  Create DeshBazaar Id
                 </Button>
               </>
             )}
@@ -212,7 +212,7 @@ const WithEmail = () => {
               marginBottom={"2rem"}
               marginTop={"1rem"}
             >
-              Already have a UrbanBazaaar ID? <Link href="/">Log in</Link>
+              Already have a DeshBazaar ID? <Link href="/">Log in</Link>
             </Typography>
           </Box>
         </Box>

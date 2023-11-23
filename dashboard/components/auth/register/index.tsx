@@ -60,7 +60,7 @@ const Register = () => {
           flexDirection={"column"}
         >
           <Typography sx={{ marginBottom: "2rem" }}>
-            Create a UrbanBazar ID One last step before starting your free
+            Create a DeshBazaar ID One last step before starting your free
             trial.
           </Typography>
           <Button
@@ -113,7 +113,7 @@ const Register = () => {
             marginTop={"0.5rem"}
             sx={{ width: "100%", textAlign: "left" }}
           >
-            Already have a UrbanBazaaar ID? <Link href="/">Log in </Link>
+            Already have a DeshBazaar ID? <Link href="/">Log in </Link>
           </Typography>
         </Box>
       </Box>

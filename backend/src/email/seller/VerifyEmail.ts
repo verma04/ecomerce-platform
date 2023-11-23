@@ -39,7 +39,7 @@ const VerifyEmail = async ({ name, url, email }: any) => {
             </table>
             <p data-id="react-email-text" style="font-size:14px;line-height:24px;margin:16px 0;color:rgb(0,0,0)">or copy and paste this URL into your browser: <a href=${url} data-id="react-email-link" target="_blank" style="color:rgb(37,99,235);text-decoration:none;text-decoration-line:none">${url}</a></p>
             <hr data-id="react-email-hr" style="width:100%;border:none;border-top:1px solid #eaeaea;border-width:1px;border-style:solid;border-color:rgb(234,234,234);margin-top:26px;margin-bottom:26px;margin-left:0px;margin-right:0px" />
-            <p data-id="react-email-text" style="font-size:12px;line-height:24px;margin:16px 0;color:rgb(102,102,102)">If you didn’t ask to verify this address, you can ignore this email. <br /> Thanks, <br /> Team UrbanBazar</p>
+            <p data-id="react-email-text" style="font-size:12px;line-height:24px;margin:16px 0;color:rgb(102,102,102)">If you didn’t ask to verify this address, you can ignore this email. <br /> Thanks, <br /> Team DeshBazaar</p>
           </td>
         </tr>
       </tbody>

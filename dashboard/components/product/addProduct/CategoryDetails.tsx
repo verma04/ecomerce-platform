@@ -25,8 +25,9 @@ const CategoryDetails = ({ handleNext, img, setImg }: ImageProps) => {
           alignItems={"center"}
           flexWrap={"wrap"}
         >
-          {img.map((set) => (
+          {img.map((set, index) => (
             <img
+              key={index}
               style={{
                 width: "10rem",
                 height: "10rem",

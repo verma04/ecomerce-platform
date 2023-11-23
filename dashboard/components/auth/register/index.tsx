@@ -30,10 +30,11 @@ const Register = () => {
     console.log(data);
     const set = {
       firstName: data.given_name,
-      lastName: data.family_name,
+      lastName: data?.family_name ? data?.family_name : "",
       sellerGoogleRegistrationId: data.jti,
       email: data.email,
     };
+    console.log(set);
     login({
       variables: set,
     });

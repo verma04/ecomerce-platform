@@ -62,8 +62,10 @@ const VariantPop = ({ addVariant }) => {
                 label="Choose product unit"
                 onChange={handleChange}
               >
-                {variantDropDown?.map((set: any) => (
-                  <MenuItem value={set.name}>{set.name}</MenuItem>
+                {variantDropDown?.map((set: any, index: any) => (
+                  <MenuItem key={index} value={set.name}>
+                    {set.name}
+                  </MenuItem>
                 ))}
               </Select>
             </FormControl>

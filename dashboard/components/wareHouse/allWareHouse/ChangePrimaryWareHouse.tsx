@@ -19,7 +19,7 @@ import { green } from "@mui/material/colors";
 import { Typography } from "@mui/material";
 import SuccessToast from "@/components/toast/SuccessToast";
 
-const ChangePrimaryWareHouse = ({ open, handleClose }) => {
+const ChangePrimaryWareHouse = ({ open, handleClose }: any) => {
   const [address, setAdress] = React.useState("");
   const [edit, { data: data1 }] = changePrimaryWarehouse();
 
@@ -35,11 +35,13 @@ const ChangePrimaryWareHouse = ({ open, handleClose }) => {
     });
   };
   React.useEffect(() => {
-    const find = data?.getAllActiveWareHouse.find((t) => t?.isPrimary === true);
+    const find = data?.getAllActiveWareHouse.find(
+      (t: any) => t?.isPrimary === true
+    );
     setAdress(find?.id);
   }, []);
 
-  if (data && data.changePrimaryWarehouse) {
+  if (data && data?.changePrimaryWarehouse) {
   }
   return (
     <Dialog
@@ -66,8 +68,8 @@ const ChangePrimaryWareHouse = ({ open, handleClose }) => {
                 label="Address"
                 onChange={handleChange}
               >
-                {data?.getAllActiveWareHouse.map((t) => (
-                  <MenuItem value={t.id}>
+                {data?.getAllActiveWareHouse.map((t: any, key: any) => (
+                  <MenuItem key={key} value={t.id}>
                     <Typography>{t.wareHouseName}</Typography>
                     {t.isPrimary && (
                       <Box

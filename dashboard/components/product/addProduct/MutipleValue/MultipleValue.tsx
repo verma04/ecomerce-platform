@@ -1,14 +1,15 @@
+//@ts-noCheck
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import CloseIcon from "@mui/icons-material/Close";
-const MultipleValue = ({ list, setVariant, data }) => {
+const MultipleValue = ({ list, setVariant, data }: any) => {
   const [value, setValue] = React.useState("");
 
-  const onSubmit = async (event) => {
+  const onSubmit = async (event: any) => {
     event.preventDefault();
 
     if (value !== "") {
-      const check = list.list.find((t) => t.value === value);
+      const check = list.list.find((t: any) => t.value === value);
       console.log(check);
       if (!check) {
         //   console.log(list);
@@ -67,8 +68,9 @@ const MultipleValue = ({ list, setVariant, data }) => {
       justifyContent={"flex-start"}
       flexWrap={"wrap"}
     >
-      {list.list?.map((set) => (
+      {list.list?.map((set, index) => (
         <Box
+          key={index}
           display={"flex"}
           justifyContent={"flex-start"}
           alignItems={"center"}

@@ -77,7 +77,6 @@ const CustomersDetails = ({ basic, setBasic, handleNext }: any) => {
         <FormControl sx={{ width: "48%" }}>
           <TextField
             id="outlined-error-helper-text"
-            label="Phone"
             sx={{ fontSize: "2rem", width: "100%", marginTop: "2rem" }}
             {...register("phone", {
               required: "required",

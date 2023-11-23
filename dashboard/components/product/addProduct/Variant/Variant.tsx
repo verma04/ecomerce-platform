@@ -103,8 +103,9 @@ const Variant = ({
       <Box marginTop={"2rem"} width={"100%"} flexDirection={"column"}>
         <Typography>Add Variant</Typography>
 
-        {variant.map((set: any) => (
+        {variant.map((set: any, index) => (
           <Box
+            key={key}
             marginTop={"2rem"}
             width={"100%"}
             display={"flex"}
@@ -117,11 +118,9 @@ const Variant = ({
               alignItems={"center"}
             >
               <TextField
-                sx={{ width: "18%" }}
+                sx={{ width: "18%", fontSize: "2rem" }}
                 id="outlined-error-helper-text"
                 label={set.name}
-                type="email"
-                sx={{ fontSize: "2rem" }}
                 placeholder="Option name *"
                 value={set.name}
                 onChange={(e) => {
@@ -241,8 +240,9 @@ const Variant = ({
             <Box width={"10rem"} marginLeft={"2rem"}></Box>
           </Box>
           <Box width={"100%"}>
-            {variantGenerated?.map((set) => (
+            {variantGenerated?.map((set, index) => (
               <Box
+                key={index}
                 marginTop={"1rem"}
                 display={"flex"}
                 justifyContent={"space-between"}
@@ -265,7 +265,7 @@ const Variant = ({
                     )}
                     <Box display={"flex"}>
                       {set.variant.map((t, index) => (
-                        <Box display={"flex"}>
+                        <Box key={index} display={"flex"}>
                           <Typography
                             fontSize={"0.9rem"}
                             pr={"0.2rem"}

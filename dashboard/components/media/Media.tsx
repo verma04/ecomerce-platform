@@ -19,7 +19,11 @@ const Media = () => {
         justifyContent={"flex-start"}
         flexWrap={"wrap"}
       >
+<<<<<<< HEAD
         {data?.getAllImages?.map((set: any, key: any) => (
+=======
+        {data?.getAllImages?.map((set: any, key) => (
+>>>>>>> 3c4c8f0ef3103b13036327f16ab4d1534afd41b0
           <Box
             key={key}
             margin={"1rem"}

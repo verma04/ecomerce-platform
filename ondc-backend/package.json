@@ -1,0 +1,21 @@
+{
+  "name": "ondc-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Pankaj Verma",
+  "license": "MIT",
+  "scripts": {
+    "migrate": "ts-node src/db/migrate"
+  },
+  
+  "dependencies": {
+    "@neondatabase/serverless": "^0.6.0",
+    "dotenv": "^16.3.1",
+    "drizzle-orm": "^0.29.1",
+    "pg": "^8.11.3",
+    "postgres": "^3.4.3"
+  },
+  "devDependencies": {
+    "drizzle-kit": "^0.20.6"
+  }
+}

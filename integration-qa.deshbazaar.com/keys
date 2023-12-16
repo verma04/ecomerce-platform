@@ -22,3 +22,79 @@ python cryptic_utils.py encrypt "MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/V
 
 
 python cryptic_utils.py decrypt "MC4CAQAwBQYDK2VuBCIEIEiLMn8uiYwYq+gVgTZz5piR9/VUV8wXioIEMM2y5T1I" "MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=" "aRMnVaDFd2BDb/JvkvE3M+/JHz493gBVrZV6DtSnvQ8="
+
+
+
+{
+  "context": {
+    "operation": {
+      "ops_no": 2
+    }
+  },
+  "message": {
+    "request_id": "ad701b00-875e-11ee-b9d1-0242ac120002",
+    "timestamp": "2023-11-23T05:29:51.576Z",
+    "entity": {
+      "gst": {
+        "legal_entity_name": "PULSEPLAY DIGITAL PRIVATE LIMITED",
+        "business_address": "PULSEPLAY DIGITAL PRIVATE LIMITED",
+        "city_code": [
+          "std:080"
+        ],
+        "gst_no": "02AALCP7423J1ZC"
+      },
+      "pan": {
+        "name_as_per_pan": "PULSEPLAY DIGITAL PRIVATE LIMITED",
+        "pan_no": "AALCP7423J",
+        "date_of_incorporation": "16/02/2021"
+      },
+      "name_of_authorised_signatory": "Pankaj Verma",
+      "address_of_authorised_signatory": "PULSEPLAY DIGITAL PRIVATE LIMITED",
+      "email_id": "pankaj.verma@pulseplaydigital.com",
+      "mobile_no": 70000379913,
+      "country": "IND",
+      "subscriber_id": "integration-qa.deshbazaar.com",
+      "unique_key_id": "8f5e11dc-878e-11ee-b9d1-0242ac120002",
+      "callback_url": "/ondc/onboarding",
+      "key_pair": {
+        "signing_public_key": "TVhynRUjjlFf3tkpCBtu6wQMkr/5v83GZjFoh7AkLIA=",
+        "encryption_public_key": "MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=",
+        "valid_from": "2023-11-23T05:29:51.576Z",
+        "valid_until": "2027-11-23T05:29:51.576Z"
+      }
+    },
+      "network_participant": [
+      {
+        "subscriber_url": "/bapl",
+        "domain": "nic2004:52110",
+        "type": "sellerApp",
+         "msn": false,
+        "city_code": [
+          "std:080"
+        ]
+       
+
+      }
+     
+    ]
+  }
+}
+
+
+   {
+        "subscriber_id": "integration-qa.deshbazaar.com",
+        "status": "SUBSCRIBED",
+        "ukId": "8f5e11dc-878e-11ee-b9d1-0242ac120002",
+        "subscriber_url": "https://integration-qa.deshbazaar.com/bapl",
+        "country": "IND",
+        "domain": "nic2004:52110",
+        "valid_from": "2023-11-23T05:29:51.576Z",
+        "valid_until": "2027-11-23T05:29:51.576Z",
+        "type": "BPP",
+        "signing_public_key": "TVhynRUjjlFf3tkpCBtu6wQMkr/5v83GZjFoh7AkLIA=",
+        "encr_public_key": "MCowBQYDK2VuAyEAiu1Biq4PiaQx6dQh0Ji6t1uwZX/Sf6l3goSGuLfO+yI=",
+        "created": "2023-11-23T05:36:33.803Z",
+        "updated": "2023-11-23T05:36:33.803Z",
+        "br_id": "8f5e11dc-878e-11ee-b9d1-0242ac120002",
+        "city": "std:080"
+    }
